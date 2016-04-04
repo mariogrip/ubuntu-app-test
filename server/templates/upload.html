@@ -10,9 +10,19 @@
 {% endblock %}
 {% block content %}
 <h1>Test Ubuntu click packages on devices you don't have.<br>Upload your app below.</h1>
+
+
 <form action="upload" method="POST" enctype="multipart/form-data">
-    <p><input type="file" name="click"></p>
-    <p><label>Email: <input type="email" name="email"></label></p>
+  <div class="form-group">
+    <label for="click">Click package</label>
+    <input type="file" name="click">
+    <p class="help-block">Ubuntu click packages</p>
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" name="email" placeholder="Email">
+  </div>
+  <div>
     <p>Devices to test on:</p>
     <ul>
         {% if is_paused %}
@@ -26,9 +36,14 @@
             {% endif %}
         {% endif %}
     </ul>
-    <p><label>Optional name for this test run: <input type="text" name="runid"></label></p>
-    <p><input type=submit value="Upload"></p>
+  </div>
+  <div class="form-group">
+    <label for="runid">Optional name for this test run:</label>
+    <input type="text" class="form-control" name="runid" placeholder="name for test run">
+  </div>
+  <button type="submit" class="btn">Upload</button>
 </form>
+
 <p class="shots">{{screenshot_count}} screenshots taken for {{developer_count}} app developers</p>
 <script src="/static/gunzip.min.js"></script>
 <script src="/static/click-package-parser.js"></script>
