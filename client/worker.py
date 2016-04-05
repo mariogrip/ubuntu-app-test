@@ -46,8 +46,6 @@ def sendWorkerErrorEmail(type, value, tb):
         print e
         # and then we die.
 
-sys.excepthook = sendWorkerErrorEmail
-
 ############################################################################################
 # Parts that need implementing
 ############################################################################################
@@ -336,6 +334,7 @@ def hup(signum, stack):
     print "Got sent SIGHUP; resetting wait_time to 10"
 
 if __name__ == "__main__":
+    sys.excepthook = sendWorkerErrorEmail
     print "Worker starting up..."
     signal.signal(signal.SIGHUP, hup)
     parser = argparse.ArgumentParser(description='The ubuntu-app-test worker.')
